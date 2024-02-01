@@ -1,34 +1,30 @@
 import "./App.css";
 
-import React from "react";
-import { useInterval } from "./hooks/useInterval";
-
-const colors = ["green", "blue", "purple", "red", "pink", "beige", "yellow"];
+import { useCounter } from "./hooks/useCounter";
 
 function App() {
-  const [running, setIsRunning] = React.useState(true);
-  const [index, setIndex] = React.useState(0);
-
-  const clear = useInterval(() => {
-    setIndex(index + 1);
-  }, 1000);
-
-  const handleStop = () => {
-    clear();
-    setIsRunning(false);
-  };
-
-  const color = colors[index % colors.length];
-
-  console.log(color);
+  const [count, { increment, decrement, set, reset }] = useCounter(5, {
+    min: 5,
+    max: 10,
+  });
 
   return (
     <section>
-      <h1>useInterval</h1>
-      <button disabled={!running} className="link" onClick={handleStop}>
-        {running ? "Stop" : "Stopped"}
+      <h1>UseCounter</h1>
+      <h6>with optional min / max</h6>
+      <button disabled={count >= 10} className="link" onClick={increment}>
+        Increment
       </button>
-      <div style={{ backgroundColor: `${color}` }} />
+      <button disabled={count <= 5} className="link" onClick={decrement}>
+        Decrement
+      </button>
+      <button className="link" onClick={() => set(6)}>
+        Set to 6
+      </button>
+      <button className="link" onClick={reset}>
+        Reset
+      </button>
+      <p>{count}</p>
     </section>
   );
 }

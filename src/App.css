@@ -1,15 +1,25 @@
 section {
   text-align: center;
-  padding: 24px;
+}
+
+h6 {
+  font-weight: normal;
+}
+
+p {
+  font-size: 72px;
+  font-weight: bold;
+}
+
+button {
+  display: block;
   width: 100%;
 }
 
-div {
-  width: 300px;
-  aspect-ratio: 1;
-  max-width: 100%;
-  margin: auto;
-  margin-top: 24px;
-  transition: background-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  border-radius: 16px;
+@media (min-width: 400px) {
+  button {
+    display: inline-block;
+    width: auto;
+  }
 }
+

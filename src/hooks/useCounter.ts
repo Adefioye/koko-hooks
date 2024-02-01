@@ -19,7 +19,7 @@ export function useCounter(startingVal = 0, options: CounterOptions) {
       if (nextCount > max) {
         return c;
       }
-      return setCount(nextCount);
+      return nextCount;
     });
   }, [max]);
 
@@ -29,7 +29,7 @@ export function useCounter(startingVal = 0, options: CounterOptions) {
       if (nextCount < min) {
         return c;
       }
-      return setCount(nextCount);
+      return nextCount;
     });
   }, [min]);
 
@@ -50,5 +50,5 @@ export function useCounter(startingVal = 0, options: CounterOptions) {
     setCount(startingVal);
   }, [startingVal]);
 
-  return [count, { increment, decrement, set, reset }];
+  return [count, { increment, decrement, set, reset }] as const;
 }
